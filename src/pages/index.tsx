@@ -1,18 +1,22 @@
-import React, { FunctionComponent as FC } from "react";
+import React, { FunctionComponent as FC, useEffect } from "react";
 import { Game } from "@components/Game";
 import { Timer } from "../components/Timer";
 import { useGameContext } from "../context/GameContext";
+import { Results } from "../components/Results";
 
 export const Home: FC = () => {
-	const { playing, startGame } = useGameContext();
+	const { playing, startGame, timer } = useGameContext();
+
+	useEffect(() => {
+		if (!playing) console.log(timer);
+	}, [timer]);
 
 	return (
 		<>
 			<Timer />
 			<Game />
-			<button onClick={startGame} disabled={playing}>
-				Play!
-			</button>
+			{!playing && <button onClick={startGame}>Play!</button>}
+			<Results />
 		</>
 	);
 };

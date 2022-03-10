@@ -4,22 +4,18 @@ import { useCountdown } from "../../hooks/useCountdown";
 import { useTimer } from "../../hooks/useTimer";
 
 const Timer: FC = () => {
-	const { playing, setTimer } = useGameContext();
+	const { playing, timer } = useGameContext();
 	const countDown = useCountdown();
 	const active = useMemo(
 		() => playing && countDown === 0,
 		[playing, countDown]
 	);
-	const ms = useTimer(active);
-
-	useEffect(() => {
-		setTimer(ms);
-	}, [ms]);
+	useTimer(active);
 
 	return (
 		<>
 			{countDown === 0 ? (
-				<div>{ms} ms</div>
+				<div>{timer} ms</div>
 			) : (
 				<div>GetReady! {countDown}</div>
 			)}

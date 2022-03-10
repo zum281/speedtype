@@ -1,20 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useGameContext } from "../context/GameContext";
 
 export const useTimer = (active: boolean) => {
-	const [ms, setMS] = useState(0);
+	const { timer, setTimer } = useGameContext();
 
 	useEffect(() => {
 		let interval: NodeJS.Timer | undefined = undefined;
 		if (active) {
 			interval = setInterval(() => {
-				setMS((seconds) => seconds + 1);
+				setTimer(timer + 1);
 			}, 1);
-		} else if (!active && ms !== 0) {
+		} else if (!active && timer !== 0) {
 			clearInterval(interval);
 		}
 		return () => clearInterval(interval!);
-	}, [ms, active]);
-
-	return ms;
+	}, [timer, active]);
 };

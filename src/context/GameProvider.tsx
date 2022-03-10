@@ -9,10 +9,12 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [chars, setChars] = useState([...initialChars]);
 
-	const startGame = () => setPlaying(true);
+	const startGame = () => {
+		setTimer(0);
+		setPlaying(true);
+	};
 	const stopGame = () => {
 		setPlaying(false);
-		setTimer(0);
 		setCurrentIndex(0);
 		const newChars = chars.map((char) => {
 			return { ...char, color: CharColor.BLACK };

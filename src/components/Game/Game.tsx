@@ -4,7 +4,6 @@ import React, {
 	useEffect,
 	useState,
 } from "react";
-import { CharColor } from "../../types/enums";
 import { DisplayBox } from "@components/DisplayBox";
 import { InputBox } from "@components/InputBox";
 import { useGameContext } from "../../context/GameContext";
@@ -47,7 +46,10 @@ const Game: FC = () => {
 	};
 
 	useEffect(() => {
-		currentIndex === initialChars.length && stopGame();
+		if (currentIndex === initialChars.length) {
+			stopGame();
+			setUserInput("");
+		}
 	}, [currentIndex, stopGame]);
 
 	return (
