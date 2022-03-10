@@ -9,13 +9,10 @@ import { charObj } from "../../types";
 import { CharColor } from "../../types/enums";
 import { DisplayBox } from "@components/DisplayBox";
 import { InputBox } from "@components/InputBox";
+import { useGameContext } from "../../context/GameContext";
 
-interface Props {
-	playing: boolean;
-	endGame: () => void;
-}
-
-const Game: FC<Props> = ({ playing, endGame }) => {
+const Game: FC = () => {
+	const { playing, stopGame } = useGameContext();
 	const [chars, setChars] = useState<charObj[]>(initialChars);
 	const [userInput, setUserInput] = useState("");
 	const [index, setIndex] = useState(0);
@@ -64,7 +61,7 @@ const Game: FC<Props> = ({ playing, endGame }) => {
 	};
 
 	const resetGame = () => {
-		endGame();
+		stopGame();
 		setIndex(0);
 		setUserInput("");
 		const newChars = chars.map((char) => {

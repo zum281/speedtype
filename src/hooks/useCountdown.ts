@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useGameContext } from "../context/GameContext";
 
-export const useCountdown = (active: boolean) => {
+export const useCountdown = () => {
+	const { playing } = useGameContext();
 	const [countDown, setCountDown] = useState(5);
 	useEffect(() => {
 		let timeout: NodeJS.Timeout | undefined = undefined;
-		if (active) {
+		if (playing) {
 			timeout = setTimeout(() => {
 				setCountDown((countDown) => countDown - 1);
 			}, 1000);
@@ -13,6 +15,6 @@ export const useCountdown = (active: boolean) => {
 				clearTimeout(timeout);
 			}
 		}
-	}, [active, countDown]);
+	}, [playing, countDown]);
 	return countDown;
 };

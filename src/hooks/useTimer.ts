@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useGameContext } from "../context/GameContext";
 
 export const useTimer = (active: boolean) => {
 	const [ms, setMS] = useState(0);
