@@ -16,6 +16,9 @@ export type GameContextContent = {
 
 	chars: charObj[];
 	setChars: (chars: charObj[]) => void;
+	backspace: () => void;
+	correctAnswer: () => void;
+	wrongAnswer: () => void;
 	currentIndex: number;
 	increaseIndex: () => void;
 	decreaseIndex: () => void;

@@ -24,6 +24,41 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 	const decreaseIndex = () => setCurrentIndex(currentIndex - 1);
 	const resetIndex = () => setCurrentIndex(0);
 
+	const backspace = () => {
+		const newChars = chars.map((char) => {
+			if (char.index === currentIndex - 1) {
+				char.color = CharColor.BLACK;
+			}
+			return char;
+		});
+		setChars([...newChars]);
+		decreaseIndex();
+	};
+
+	const correctAnswer = () => {
+		const newChars = chars.map((char) => {
+			if (char.index === currentIndex) {
+				char.color = CharColor.GREEN;
+			}
+			return char;
+		});
+
+		setChars([...newChars]);
+		increaseIndex();
+	};
+
+	const wrongAnswer = () => {
+		const newChars = chars.map((char) => {
+			if (char.index === currentIndex) {
+				char.color = CharColor.RED;
+			}
+			return char;
+		});
+
+		setChars([...newChars]);
+		increaseIndex();
+	};
+
 	const value = {
 		playing,
 		startGame,
@@ -31,7 +66,10 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 		timer,
 		setTimer,
 		chars,
+		correctAnswer,
+		wrongAnswer,
 		setChars,
+		backspace,
 		currentIndex,
 		increaseIndex,
 		decreaseIndex,

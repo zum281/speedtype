@@ -10,6 +10,9 @@ const initialValue = {
 
 	chars: [],
 	setChars: (chars: GameContextContent["chars"]) => {},
+	backspace: () => {},
+	correctAnswer: () => {},
+	wrongAnswer: () => {},
 	currentIndex: 0,
 	increaseIndex: () => {},
 	decreaseIndex: () => {},
