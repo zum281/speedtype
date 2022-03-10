@@ -15,27 +15,50 @@ const initialChars = c.map((char, index) => {
 export const Home: FC = () => {
 	const [chars, setChars] = useState<charObj[]>(initialChars as charObj[]);
 
-	const [currentChar, setCurrentChar] = useState("");
+	const [userInput, setUserInput] = useState("");
 	const [index, setIndex] = useState(0);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let value = e.target.value;
-		setCurrentChar(value);
+		setUserInput(value);
 		let color: charColor = undefined;
 
-		value.charAt(value.length - 1) === text[index]
-			? (color = "green")
-			: (color = "red");
-		console.log(value, text[index]);
-		const newChars = chars.map((char) => {
-			if (char.index === index) {
-				char.color = color;
+		// check if user pressed backspace
+		if (value.length < userInput.length) {
+			color = undefined;
+			const newChars = chars.map((char) => {
+				if (char.index === index - 1) {
+					char.color = color;
+				}
+				return char;
+			});
+			setChars([...newChars]);
+			setIndex(index - 1);
+		} else {
+			// check if user pressed space
+			if (value.charAt(value.length - 1) === " ") {
+				setIndex(index + 1);
+				setUserInput("");
 			}
-			return char;
-		});
 
-		setChars([...newChars]);
-		setIndex(index + 1);
+			if (text[index] === " ") {
+				setUserInput("");
+			}
+
+			value.charAt(value.length - 1) === text[index]
+				? (color = "green")
+				: (color = "red");
+			console.log(value, text[index]);
+			const newChars = chars.map((char) => {
+				if (char.index === index) {
+					char.color = color;
+				}
+				return char;
+			});
+
+			setChars([...newChars]);
+			setIndex(index + 1);
+		}
 	};
 
 	useEffect(() => {
@@ -59,7 +82,7 @@ export const Home: FC = () => {
 				type="text"
 				name="user-text"
 				id="user-text"
-				value={currentChar}
+				value={userInput}
 				onChange={handleChange}
 			/>
 		</>

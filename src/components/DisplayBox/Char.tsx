@@ -7,7 +7,7 @@ interface Props {
 
 const Char: FC<Props> = ({ char, color }) => {
 	const style = {
-		color: color ?? undefined,
+		color: color ?? "black",
 	};
 
 	return <span style={style}>{char}</span>;
