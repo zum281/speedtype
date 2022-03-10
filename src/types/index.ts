@@ -1,7 +1,7 @@
+import { CharColor } from "./enums";
+
 export type charObj = {
 	index: number;
 	value: string;
-	color: charColor;
+	color: CharColor;
 };
-
-export type charColor = "green" | "red" | undefined;

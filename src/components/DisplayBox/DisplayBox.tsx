@@ -1,14 +1,17 @@
 import React, { FunctionComponent as FC } from "react";
-import { text } from "@constants/text";
+import { charObj } from "../../types";
+
 import Char from "./Char";
 
-const chars = Array.from(text);
+interface Props {
+	chars: charObj[];
+}
 
-const DisplayBox: FC = () => {
+const DisplayBox: FC<Props> = ({ chars }) => {
 	return (
 		<p>
 			{chars.map((char, i) => {
-				return <Char key={i} char={char} />;
+				return <Char key={i} char={char.value} color={char.color} />;
 			})}
 		</p>
 	);
