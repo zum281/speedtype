@@ -11,16 +11,14 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const startGame = () => {
 		setTimer(0);
-		setPlaying(true);
-	};
-	const stopGame = () => {
-		setPlaying(false);
 		setCurrentIndex(0);
 		const newChars = chars.map((char) => {
 			return { ...char, color: CharColor.BLACK };
 		});
 		setChars([...newChars]);
+		setPlaying(true);
 	};
+	const stopGame = () => setPlaying(false);
 
 	const increaseIndex = () => setCurrentIndex(currentIndex + 1);
 	const decreaseIndex = () => setCurrentIndex(currentIndex - 1);

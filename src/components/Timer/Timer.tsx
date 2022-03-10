@@ -15,7 +15,7 @@ const Timer: FC = () => {
 	return (
 		<>
 			{countDown === 0 ? (
-				<div>{timer} ms</div>
+				<div>{timer} s</div>
 			) : (
 				<div>GetReady! {countDown}</div>
 			)}
