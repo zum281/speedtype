@@ -63,17 +63,19 @@ const Game: FC<Props> = ({ playing, endGame }) => {
 		}
 	};
 
+	const resetGame = () => {
+		endGame();
+		setIndex(0);
+		setUserInput("");
+		const newChars = chars.map((char) => {
+			return { ...char, color: CharColor.BLACK };
+		});
+		setChars([...newChars]);
+	};
+
 	useEffect(() => {
-		if (index === initialChars.length) {
-			endGame();
-			setIndex(0);
-			setUserInput("");
-			const newChars = chars.map((char) => {
-				return { ...char, color: CharColor.BLACK };
-			});
-			setChars([...newChars]);
-		}
-	}, [index]);
+		index === initialChars.length && resetGame();
+	}, [index, resetGame]);
 
 	return (
 		<>
