@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FunctionComponent as FC } from "react";
+import { useGameContext } from "../../context/GameContext";
 
 interface Props {
 	value: string;
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const InputBox: FC<Props> = ({ value, onChange }) => {
+	const { timer } = useGameContext();
 	return (
 		<input
 			type="text"
@@ -13,6 +15,7 @@ const InputBox: FC<Props> = ({ value, onChange }) => {
 			id="user-text"
 			value={value}
 			onChange={onChange}
+			disabled={timer === 0}
 		/>
 	);
 };

@@ -1,6 +1,6 @@
 import { Layout } from "../components/Layout";
 import type { AppProps } from "next/app";
-import { GameProvider } from "../context/GameContext";
+import { GameProvider } from "../context/GameProvider";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
 	return (

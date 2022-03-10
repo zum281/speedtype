@@ -4,18 +4,26 @@ import React, {
 	useEffect,
 	useState,
 } from "react";
-import { initialChars } from "@constants/game";
-import { charObj } from "../../types";
 import { CharColor } from "../../types/enums";
 import { DisplayBox } from "@components/DisplayBox";
 import { InputBox } from "@components/InputBox";
 import { useGameContext } from "../../context/GameContext";
+import { initialChars } from "../../constants/game";
 
 const Game: FC = () => {
-	const { playing, stopGame } = useGameContext();
-	const [chars, setChars] = useState<charObj[]>(initialChars);
+	const {
+		playing,
+		timer,
+		stopGame,
+		chars,
+		setChars,
+		currentIndex,
+		increaseIndex,
+		decreaseIndex,
+		resetIndex,
+	} = useGameContext();
+
 	const [userInput, setUserInput] = useState("");
-	const [index, setIndex] = useState(0);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		let value = e.target.value;
@@ -25,54 +33,44 @@ const Game: FC = () => {
 		// check if user pressed backspace
 		if (value.length < userInput.length) {
 			const newChars = chars.map((char) => {
-				if (char.index === index - 1) {
+				if (char.index === currentIndex - 1) {
 					char.color = color;
 				}
 				return char;
 			});
 			setChars([...newChars]);
 
-			setIndex(index - 1);
+			decreaseIndex();
 		} else {
 			// check if user pressed space
 			if (value.charAt(value.length - 1) === " ") {
-				setIndex(index + 1);
+				increaseIndex();
 				setUserInput("");
 			}
 
-			if (initialChars[index].value === " ") {
+			if (initialChars[currentIndex].value === " ") {
 				setUserInput("");
 			}
 
-			value.charAt(value.length - 1) === initialChars[index].value
+			value.charAt(value.length - 1) === initialChars[currentIndex].value
 				? (color = CharColor.GREEN)
 				: (color = CharColor.RED);
 
 			const newChars = chars.map((char) => {
-				if (char.index === index) {
+				if (char.index === currentIndex) {
 					char.color = color;
 				}
 				return char;
 			});
 
 			setChars([...newChars]);
-			setIndex(index + 1);
+			increaseIndex();
 		}
 	};
 
-	const resetGame = () => {
-		stopGame();
-		setIndex(0);
-		setUserInput("");
-		const newChars = chars.map((char) => {
-			return { ...char, color: CharColor.BLACK };
-		});
-		setChars([...newChars]);
-	};
-
 	useEffect(() => {
-		index === initialChars.length && resetGame();
-	}, [index, resetGame]);
+		currentIndex === initialChars.length && stopGame();
+	}, [currentIndex, stopGame]);
 
 	return (
 		<>

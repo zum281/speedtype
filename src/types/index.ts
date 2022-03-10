@@ -5,3 +5,19 @@ export type charObj = {
 	value: string;
 	color: CharColor;
 };
+
+export type GameContextContent = {
+	playing: boolean;
+	startGame: () => void;
+	stopGame: () => void;
+
+	timer: number;
+	setTimer: (timer: number) => void;
+
+	chars: charObj[];
+	setChars: (chars: charObj[]) => void;
+	currentIndex: number;
+	increaseIndex: () => void;
+	decreaseIndex: () => void;
+	resetIndex: () => void;
+};
