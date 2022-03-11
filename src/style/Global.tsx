@@ -19,6 +19,12 @@ export const GlobalStyles = () => {
 			color: #333;
 		}
 
+		body {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: clamp(0.5rem, 1rem, 1.5rem);
+		}
+
 		button {
 			border: none;
 			margin: 0;
@@ -32,6 +38,7 @@ export const GlobalStyles = () => {
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
+			cursor: pointer;
 		}
 
 		a {

@@ -3,6 +3,7 @@ import { Game } from "@components/Game";
 import { Timer } from "../components/Timer";
 import { useGameContext } from "../context/GameContext";
 import { Results } from "../components/Results";
+import { Button } from "../components/ui/Button";
 
 export const Home: FC = () => {
 	const { playing, startGame } = useGameContext();
@@ -11,7 +12,7 @@ export const Home: FC = () => {
 		<>
 			<Timer />
 			<Game />
-			{!playing && <button onClick={startGame}>Play!</button>}
+			{!playing && <Button onClick={startGame}>Play!</Button>}
 			<Results />
 		</>
 	);
