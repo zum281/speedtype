@@ -7,7 +7,6 @@ import React, {
 import { DisplayBox } from "@components/DisplayBox";
 import { InputBox } from "@components/InputBox";
 import { useGameContext } from "../../context/GameContext";
-import { initialChars } from "../../constants/game";
 
 const Game: FC = () => {
 	const {
@@ -19,6 +18,7 @@ const Game: FC = () => {
 		backspace,
 		currentIndex,
 		increaseIndex,
+		initialChars,
 	} = useGameContext();
 
 	const [userInput, setUserInput] = useState("");
@@ -46,7 +46,7 @@ const Game: FC = () => {
 	};
 
 	useEffect(() => {
-		if (currentIndex === initialChars.length) {
+		if (initialChars.length > 0 && currentIndex === initialChars.length) {
 			stopGame();
 			setUserInput("");
 		}

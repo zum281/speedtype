@@ -12,6 +12,7 @@ const initialValue = {
 	addError: () => {},
 	removeError: () => {},
 	chars: [],
+	initialChars: [],
 	setChars: (chars: GameContextContent["chars"]) => {},
 	backspace: () => {},
 	correctAnswer: () => {},

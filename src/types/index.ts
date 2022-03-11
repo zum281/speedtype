@@ -18,7 +18,7 @@ export type GameContextContent = {
 	errors: number;
 	addError: () => void;
 	removeError: () => void;
-
+	initialChars: charObj[];
 	chars: charObj[];
 	setChars: (chars: charObj[]) => void;
 	backspace: () => void;

@@ -1,23 +1,28 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GameContext } from "./GameContext";
-import { initialChars } from "@constants/game";
 import { CharColor } from "../types/enums";
+import { useInitialText } from "../hooks/useInitialText";
+import { charObj } from "../types";
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
+	const [refresh, setRefresh] = useState(false);
+	const { initialChars } = useInitialText(refresh, setRefresh);
 	const [playing, setPlaying] = useState(false);
 	const [timer, setTimer] = useState(0);
 	const [currentIndex, setCurrentIndex] = useState(0);
-	const [chars, setChars] = useState([...initialChars]);
+	const [chars, setChars] = useState<charObj[]>([]);
 	const [errors, setErros] = useState(0);
 	const seconds = useMemo(() => timer / 10, [timer]);
+
+	useEffect(() => {
+		console.log(initialChars, playing);
+		setChars([...initialChars]);
+	}, [initialChars, playing]);
 
 	const startGame = () => {
 		setTimer(0);
 		setCurrentIndex(0);
-		const newChars = chars.map((char) => {
-			return { ...char, color: CharColor.BLACK };
-		});
-		setChars([...newChars]);
+		setRefresh(true);
 		setPlaying(true);
 	};
 
@@ -89,6 +94,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 		increaseIndex,
 		decreaseIndex,
 		resetIndex,
+		initialChars,
 		errors,
 		addError,
 		removeError,
