@@ -5,11 +5,7 @@ import { useGameContext } from "../context/GameContext";
 import { Results } from "../components/Results";
 
 export const Home: FC = () => {
-	const { playing, startGame, timer } = useGameContext();
-
-	useEffect(() => {
-		if (!playing) console.log(timer);
-	}, [timer]);
+	const { playing, startGame } = useGameContext();
 
 	return (
 		<>

@@ -14,6 +14,10 @@ export type GameContextContent = {
 	timer: number;
 	setTimer: (timer: number) => void;
 
+	errors: number;
+	addError: () => void;
+	removeError: () => void;
+
 	chars: charObj[];
 	setChars: (chars: charObj[]) => void;
 	backspace: () => void;

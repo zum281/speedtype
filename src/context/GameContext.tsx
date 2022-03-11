@@ -7,7 +7,9 @@ const initialValue = {
 	stopGame: () => {},
 	timer: 0,
 	setTimer: (timer: number) => {},
-
+	errors: 0,
+	addError: () => {},
+	removeError: () => {},
 	chars: [],
 	setChars: (chars: GameContextContent["chars"]) => {},
 	backspace: () => {},

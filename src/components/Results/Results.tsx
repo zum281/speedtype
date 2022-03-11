@@ -1,11 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useGameContext } from "../../context/GameContext";
 import { CharColor } from "../../types/enums";
-import { grossWPM, timeInMinutes } from "../../utils/timeUtils";
+import {
+	getAccuracy,
+	grossWPM,
+	netWPM,
+	timeInMinutes,
+} from "../../utils/timeUtils";
 
 const Results = () => {
-	const { chars, timer } = useGameContext();
-	const [wpm, setWpm] = useState(0);
+	const { chars, timer, errors } = useGameContext();
+	const [grossWpm, setGrossWpm] = useState(0);
+	const [netWpm, setNetWpm] = useState(0);
+	const [accuracy, setAccuracy] = useState(100);
 
 	const typedChars = useMemo(
 		() => chars.filter((char) => char.color !== CharColor.BLACK),
@@ -13,14 +20,21 @@ const Results = () => {
 	);
 
 	useEffect(() => {
-		if (typedChars.length > 0)
-			setWpm(grossWPM(timeInMinutes(timer), typedChars.length));
+		if (typedChars.length > 0) {
+			setGrossWpm(grossWPM(timeInMinutes(timer), typedChars.length));
+			setNetWpm(netWPM(timeInMinutes(timer), typedChars.length, errors));
+			setAccuracy(getAccuracy(errors, typedChars.length));
+		}
 	}, [timer, typedChars]);
 
-	useEffect(() => {
-		console.log(typedChars);
-	}, [typedChars]);
-	return <p>WPM: {wpm}</p>;
+	return (
+		<div>
+			<p>Gross WPM: {grossWpm}</p>
+			<p>
+				Net WPM: {netWpm} (Accuracy: {accuracy}%)
+			</p>
+		</div>
+	);
 };
 
 export default Results;
