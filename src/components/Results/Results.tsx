@@ -9,7 +9,7 @@ import {
 } from "../../utils/timeUtils";
 
 const Results = () => {
-	const { chars, timer, errors } = useGameContext();
+	const { chars, seconds, errors } = useGameContext();
 	const [grossWpm, setGrossWpm] = useState(0);
 	const [netWpm, setNetWpm] = useState(0);
 	const [accuracy, setAccuracy] = useState(100);
@@ -18,8 +18,6 @@ const Results = () => {
 		() => chars.filter((char) => char.color !== CharColor.BLACK),
 		[chars]
 	);
-
-	const seconds = useMemo(() => timer / 10, [timer]);
 
 	useEffect(() => {
 		if (typedChars.length > 0) {

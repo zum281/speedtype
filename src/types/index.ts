@@ -13,6 +13,7 @@ export type GameContextContent = {
 
 	timer: number;
 	setTimer: (timer: number) => void;
+	seconds: number;
 
 	errors: number;
 	addError: () => void;

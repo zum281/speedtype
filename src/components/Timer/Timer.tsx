@@ -1,10 +1,10 @@
-import React, { FunctionComponent as FC, useEffect, useMemo } from "react";
+import React, { FunctionComponent as FC, useMemo } from "react";
 import { useGameContext } from "../../context/GameContext";
 import { useCountdown } from "../../hooks/useCountdown";
 import { useTimer } from "../../hooks/useTimer";
 
 const Timer: FC = () => {
-	const { playing, timer } = useGameContext();
+	const { playing, seconds } = useGameContext();
 	const countDown = useCountdown();
 	const active = useMemo(
 		() => playing && countDown === 0,
@@ -12,12 +12,10 @@ const Timer: FC = () => {
 	);
 	useTimer(active);
 
-	const seconds = useMemo(() => timer / 10, [timer]);
-
 	return (
 		<>
 			{countDown === 0 ? (
-				<div>{seconds} s</div>
+				<div>{Math.floor(seconds)} s</div>
 			) : (
 				<div>GetReady! {countDown}</div>
 			)}

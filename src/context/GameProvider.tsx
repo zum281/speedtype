@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { GameContext } from "./GameContext";
 import { initialChars } from "@constants/game";
 import { CharColor } from "../types/enums";
@@ -9,7 +9,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [chars, setChars] = useState([...initialChars]);
 	const [errors, setErros] = useState(0);
-	const [focusInput, setFocusInput] = useState(false);
+	const seconds = useMemo(() => timer / 10, [timer]);
 
 	const startGame = () => {
 		setTimer(0);
@@ -20,6 +20,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 		setChars([...newChars]);
 		setPlaying(true);
 	};
+
 	const stopGame = () => setPlaying(false);
 
 	const increaseIndex = () => setCurrentIndex(currentIndex + 1);
@@ -91,6 +92,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 		errors,
 		addError,
 		removeError,
+		seconds,
 	};
 
 	return (

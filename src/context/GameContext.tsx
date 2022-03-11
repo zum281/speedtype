@@ -7,6 +7,7 @@ const initialValue = {
 	stopGame: () => {},
 	timer: 0,
 	setTimer: (timer: number) => {},
+	seconds: 0,
 	errors: 0,
 	addError: () => {},
 	removeError: () => {},
