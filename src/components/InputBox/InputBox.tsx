@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FunctionComponent as FC } from "react";
+import React, { ChangeEvent, FunctionComponent as FC, useRef } from "react";
 import { useGameContext } from "../../context/GameContext";
 
 interface Props {
@@ -8,6 +8,12 @@ interface Props {
 
 const InputBox: FC<Props> = ({ value, onChange }) => {
 	const { timer } = useGameContext();
+	const ref = useRef<HTMLInputElement>(null);
+
+	if (timer > 0) {
+		ref.current?.focus();
+	}
+
 	return (
 		<input
 			type="text"
@@ -16,6 +22,7 @@ const InputBox: FC<Props> = ({ value, onChange }) => {
 			value={value}
 			onChange={onChange}
 			disabled={timer === 0}
+			ref={ref}
 		/>
 	);
 };

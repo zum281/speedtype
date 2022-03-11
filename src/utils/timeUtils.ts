@@ -6,9 +6,9 @@ export const grossWPM = (minutes: number, typedChars: number): number => {
 };
 
 export const netWPM = (minutes: number, typedChars: number, errors: number) => {
-	return grossWPM(minutes, typedChars) - errors / minutes;
+	return Math.floor(grossWPM(minutes, typedChars) - errors / minutes);
 };
 
 export const getAccuracy = (errors: number, typedChars: number) => {
-	return (1 - errors / typedChars) * 100;
+	return Math.floor((1 - errors / typedChars) * 100);
 };

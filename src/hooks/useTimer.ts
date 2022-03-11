@@ -9,7 +9,7 @@ export const useTimer = (active: boolean) => {
 		if (active) {
 			interval = setInterval(() => {
 				setTimer(timer + 1);
-			}, 1000);
+			}, 100);
 		} else if (!active && timer !== 0) {
 			clearInterval(interval);
 		}

@@ -12,10 +12,12 @@ const Timer: FC = () => {
 	);
 	useTimer(active);
 
+	const seconds = useMemo(() => timer / 10, [timer]);
+
 	return (
 		<>
 			{countDown === 0 ? (
-				<div>{timer} s</div>
+				<div>{seconds} s</div>
 			) : (
 				<div>GetReady! {countDown}</div>
 			)}

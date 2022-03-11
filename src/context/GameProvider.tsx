@@ -9,6 +9,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [chars, setChars] = useState([...initialChars]);
 	const [errors, setErros] = useState(0);
+	const [focusInput, setFocusInput] = useState(false);
 
 	const startGame = () => {
 		setTimer(0);

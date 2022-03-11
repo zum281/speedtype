@@ -19,13 +19,17 @@ const Results = () => {
 		[chars]
 	);
 
+	const seconds = useMemo(() => timer / 10, [timer]);
+
 	useEffect(() => {
 		if (typedChars.length > 0) {
-			setGrossWpm(grossWPM(timeInMinutes(timer), typedChars.length));
-			setNetWpm(netWPM(timeInMinutes(timer), typedChars.length, errors));
+			setGrossWpm(grossWPM(timeInMinutes(seconds), typedChars.length));
+			setNetWpm(
+				netWPM(timeInMinutes(seconds), typedChars.length, errors)
+			);
 			setAccuracy(getAccuracy(errors, typedChars.length));
 		}
-	}, [timer, typedChars]);
+	}, [seconds, typedChars]);
 
 	return (
 		<div>
