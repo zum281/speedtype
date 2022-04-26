@@ -12,17 +12,15 @@ export const GlobalStyles = () => {
 
 		html,
 		body {
-			font-family: system-ui, sans-serif;
+			font-family: Poppins, system-ui, sans-serif;
 			font-size: 16px;
 			line-height: 1.6;
-			background: #fafafa;
-			color: #333;
 		}
 
-		body {
-			max-width: 800px;
+		main {
+			max-width: 50rem;
 			margin: 0 auto;
-			padding: clamp(0.5rem, 1rem, 1.5rem);
+			padding: 1rem;
 		}
 
 		button {
@@ -44,6 +42,10 @@ export const GlobalStyles = () => {
 		a {
 			text-decoration: none;
 			color: inherit;
+		}
+
+		li {
+			list-style-type: none;
 		}
 	`;
 	return <Global styles={styles} />;

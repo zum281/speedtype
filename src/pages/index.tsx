@@ -1,18 +1,22 @@
-import React, { FunctionComponent as FC, useEffect } from "react";
+import React from "react";
+import { Button } from "@chakra-ui/react";
 import { Game } from "@components/Game";
 import { Timer } from "../components/Timer";
 import { useGameContext } from "../context/GameContext";
 import { Results } from "../components/Results";
-import { Button } from "../components/ui/Button";
 
-export const Home: FC = () => {
+export const Home = () => {
 	const { playing, startGame } = useGameContext();
 
 	return (
 		<>
 			<Timer />
 			<Game />
-			{!playing && <Button onClick={startGame}>Play!</Button>}
+			{!playing && (
+				<Button size='lg' onClick={startGame} colorScheme={"pink"}>
+					Play!
+				</Button>
+			)}
 			<Results />
 		</>
 	);

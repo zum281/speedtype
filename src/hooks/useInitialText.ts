@@ -1,3 +1,4 @@
+import { useColorMode } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { charObj } from "../types";
 import { CharColor } from "../types/enums";
@@ -8,6 +9,7 @@ export const useInitialText = (
 ) => {
 	const [initialText, setInitialText] = useState("");
 	const [initialChars, setInitialChars] = useState<charObj[]>([]);
+	const { colorMode } = useColorMode();
 
 	useEffect(() => {
 		if (refetch) {
@@ -20,7 +22,10 @@ export const useInitialText = (
 						return {
 							index: index,
 							value: char,
-							color: CharColor.BLACK,
+							color:
+								colorMode === "light"
+									? CharColor.BLACK
+									: CharColor.WHITE,
 						};
 					});
 					setInitialChars([...chars]);

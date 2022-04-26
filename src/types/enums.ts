@@ -1,5 +1,6 @@
 export enum CharColor {
-	BLACK = "#000",
-	GREEN = "#0f0",
-	RED = "#f00",
+	WHITE = "#F7FAFC",
+	BLACK = "#171923",
+	GREEN = "#38A169",
+	RED = "#E53E3E",
 }

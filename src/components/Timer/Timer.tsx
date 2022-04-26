@@ -1,4 +1,5 @@
 import React, { FunctionComponent as FC, useMemo } from "react";
+import { Text } from "@chakra-ui/react";
 import { useGameContext } from "../../context/GameContext";
 import { useCountdown } from "../../hooks/useCountdown";
 import { useTimer } from "../../hooks/useTimer";
@@ -14,10 +15,15 @@ const Timer: FC = () => {
 
 	return (
 		<>
-			{countDown === 0 ? (
-				<div>{Math.floor(seconds)} s</div>
-			) : (
-				<div>GetReady! {countDown}</div>
+			{countDown === 0 && (
+				<Text fontSize='3xl' as='output'>
+					{Math.floor(seconds)} s
+				</Text>
+			)}
+			{countDown !== 0 && (
+				<Text fontSize='3xl' as='output'>
+					Get Ready! {countDown}
+				</Text>
 			)}
 		</>
 	);

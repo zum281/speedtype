@@ -7,6 +7,7 @@ import React, {
 import { DisplayBox } from "@components/DisplayBox";
 import { InputBox } from "@components/InputBox";
 import { useGameContext } from "../../context/GameContext";
+import { Container, VStack } from "@chakra-ui/react";
 
 const Game: FC = () => {
 	const {
@@ -53,10 +54,14 @@ const Game: FC = () => {
 	}, [currentIndex, stopGame]);
 
 	return (
-		<>
-			<DisplayBox chars={chars} />
-			{playing && <InputBox value={userInput} onChange={handleChange} />}
-		</>
+		<Container>
+			<VStack spacing={4}>
+				<DisplayBox chars={chars} />
+				{playing && (
+					<InputBox value={userInput} onChange={handleChange} />
+				)}
+			</VStack>
+		</Container>
 	);
 };
 

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FunctionComponent as FC, useRef } from "react";
+import { Input } from "@chakra-ui/react";
 import { useGameContext } from "../../context/GameContext";
 
 interface Props {
@@ -15,14 +16,16 @@ const InputBox: FC<Props> = ({ value, onChange }) => {
 	}
 
 	return (
-		<input
-			type="text"
-			name="user-text"
-			id="user-text"
+		<Input
+			type='text'
+			name='user-text'
+			id='user-text'
 			value={value}
 			onChange={onChange}
 			disabled={timer === 0}
 			ref={ref}
+			size='lg'
+			variant='filled'
 		/>
 	);
 };
