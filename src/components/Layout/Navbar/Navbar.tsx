@@ -9,8 +9,10 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { useGameContext } from "../../../context/GameContext";
 const Navbar: FC = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	const { stopGame } = useGameContext();
 	return (
 		<Box bg={useColorModeValue("gray.100", "gray.900")}>
 			<Flex
@@ -24,7 +26,7 @@ const Navbar: FC = () => {
 					<ul>
 						<li>
 							<NextLink href='/' passHref>
-								<Link>New Game</Link>
+								<Link onClick={stopGame}>New Game</Link>
 							</NextLink>
 						</li>
 					</ul>
