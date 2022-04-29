@@ -1,5 +1,6 @@
 import { useColorMode } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { API_ENDPOINT_PARAGRAPH } from "../constants";
 import { charObj } from "../types";
 import { CharColor } from "../types/enums";
 
@@ -13,7 +14,7 @@ export const useInitialText = (
 
 	useEffect(() => {
 		if (refetch) {
-			fetch("https://nameless-mountain-00644.herokuapp.com/paragraphs/1")
+			fetch(API_ENDPOINT_PARAGRAPH)
 				.then((res) => res.text())
 				.then((data) => {
 					console.log(data);
