@@ -13,7 +13,7 @@ export const useInitialText = (
 
 	useEffect(() => {
 		if (refetch) {
-			fetch("http://metaphorpsum.com/paragraphs/1")
+			fetch("https://nameless-mountain-00644.herokuapp.com/paragraphs/1")
 				.then((res) => res.text())
 				.then((data) => {
 					console.log(data);
